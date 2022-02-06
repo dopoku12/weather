@@ -27,11 +27,6 @@ h1{text-align: center;
     height: 10vh;
 }
 
-
-
-
-
-
 .present-forecast{
     display: flex;
     flex-direction: column;
@@ -48,8 +43,10 @@ h1{text-align: center;
 
 .forecast{ 
     display: flex;
-  
+    justify-content: space-around;
+    margin:3vh ;
     color: white;
+    gap: 12px;
 }
 
 .next-forecast{ 
@@ -57,6 +54,6 @@ h1{text-align: center;
     width: 50vw;
     color: white;
     background-color:rgb(0, 30, 138) ;
-    margin: 15px;   
+   
 }
  
