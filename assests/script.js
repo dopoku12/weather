@@ -1,6 +1,6 @@
 "use strict"
 //HTML CONTENT//
-const savedSearch = document.getElementsByClassName('savedSearch')
+const savedSearch = document.querySelector('.savedSearch')
 const search = document.getElementById('search')
 const searchBtn = document.getElementById('searchBtn')
 const clearBtn = document.getElementById('clearBtn')
@@ -12,7 +12,6 @@ const mainHumidity = document.getElementById(`mainHumidity`)
 const mainUvIndex = document.getElementById(`mainUvIndex`)
 
 //INITIALIZE SEARCH AND SAVE// 
-let searchArr = []
 const initialize = () => {
     let searchVal = search.value.trim()
     weatherApi(searchVal)
@@ -20,22 +19,30 @@ const initialize = () => {
     // load()
 }
 
+let inputArr = []
 //SAVE SEARCH VALUE//
 const save = (input) => {
-    searchArr.push(input)
-    console.log(searchArr);
+    inputArr.push(input)
+    console.log(inputArr);
     console.log('history :', input);
+    localStorage.setItem('Search History', JSON.stringify(inputArr))
+    let parsedVal = JSON.parse(localStorage.getItem('Search History'));
+    console.log('passed', parsedVal)
+    let outputArr = []
+    outputArr.push(parsedVal)
 
-    searchArr.forEach((history) => {
-        localStorage.setItem('Search History', JSON.stringify(history))
-        let parsedVal = JSON.parse(localStorage.getItem('Search History'));
-        console.log('passed', parsedVal)
+
+    outputArr.forEach(function (history) {
+        const liTag = document.createElement("li")
+        liTag.innerText = history
+        savedSearch.appendChild(liTag)
+
     })
-    const liTag = document.createElement("li")
-    liTag.innerText = parsedVal
-    savedSearch.appendChild(liTag)
 
+    // inputArr.forEach((history) => {
+    // })
 };
+
 searchBtn.addEventListener('click', initialize)
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); })
 // window.onload = load()
@@ -84,17 +91,14 @@ async function weatherApi(inputName) {
                 temp.innerText = `Temp: ${day.temp.day}°F`;
                 wind.innerText = `Wind Speed: ${day.wind_speed}MPH`;
                 humidity.innerText = `Humidity: ${day.humidity}%`;
-            }
+            };
             num++
-        }
-        )
+        });
 
     }
-    else {
-        nameNDtime.innerText = `SORRY CITY NOT FOUND 😭`
-    }
+    else { nameNDtime.innerText = `SORRY CITY NOT FOUND 😭` };
 
-}
+};
 
 clearBtn.addEventListener('click', function (e) {
     e.preventDefault()
