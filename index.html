@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assests/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather Dashboard</title>
 </head>
 
 <body>
@@ -15,13 +18,17 @@
         <h1>
             Weather Dashboard
         </h1>
+        <nav class="search-container">
+            <input type="search" placeholder="Enter city" id="search">
+            <button type="button" id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </nav>
     </head>
 
     <main>
-        <nav>
-            <input type="text" placeholder="Enter city" id="search">
-            <input type="button" value="search" id="searchBtn">
-        </nav>
+
+
 
         <article>
             <input type="button" value="clear" id="clearBtn">
@@ -30,24 +37,27 @@
             </section>
 
             <section class="present-forecast">
-                <li id="nameNDtime">
+                <ul>
 
-                </li>
+                    <li id="nameNDtime">
 
-                <li id="mainTemp">
+                    </li>
 
-                </li>
-                <li id="mainWind">
+                    <li id="mainTemp">
 
-                </li>
+                    </li>
+                    <li id="mainWind">
 
-                <li id="mainHumidity">
+                    </li>
 
-                </li>
+                    <li id="mainHumidity">
 
-                <li id="mainUvIndex">
+                    </li>
 
-                </li>
+                    <li id="mainUvIndex">
+
+                    </li>
+                </ul>
             </section>
         </article>
 

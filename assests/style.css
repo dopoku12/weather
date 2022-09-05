@@ -1,59 +1,90 @@
-*{ padding: 0px;
-    margin:0px ;
+* {
+  padding: 0px;
+  margin: 0px;
 }
-body{
-    overflow-x: hidden;
-}
-
-head{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-h1{text-align: center;
-    background-image: linear-gradient(rgb(69, 107, 245),rgb(0, 30, 138) );
-    color: azure;
-}
-#search{
-    text-align: center;
-    width: 100vw;
-    height: 10vh;
+body {
+  overflow-x: hidden;
+  background-color: #00aff0;
 }
 
-#searchBtn{
-    background-color:rgb(69, 107, 245);
-    color: white;
-    width: 100vw;
-    height: 10vh;
+head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+
+  background-image: linear-gradient(rgb(69, 107, 245), rgb(0, 30, 138));
+  color: azure;
 }
 
-.present-forecast{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 2vh;
-    margin-left: 25vw;
-    width: 70vw;
-    height: 60vh;
-    border: solid grey 5px;}
-  
-    li{ list-style: none;
-    font-weight: bolder;
+.search-container {
+  padding: 12px;
+  border-radius: 5px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 5px 15px 20px 15px rgba(0, 0, 0, 0.634);
+  z-index: 10%;
+  background-color: #13131306;
 }
 
-.forecast{ 
-    display: flex;
-    justify-content: space-around;
-    margin:3vh ;
-    color: white;
-    gap: 12px;
+#search {
+  width: 45%;
+  border-radius: inherit;
+  font-size: 1.5em;
+  width: 90%;
+  font-style: oblique;
+  color: white;
+  outline: none;
+  font-size: 1em;
+  font-weight: bolder;
+  padding: 7px 8px;
+  border: none;
+  background-color: transparent;
 }
 
-.next-forecast{ 
-    height: 50vh;
-    width: 50vw;
-    color: white;
-    background-color:rgb(0, 30, 138) ;
-   
+#search::placeholder {
+  color: rgb(255, 255, 255);
 }
- 
+
+#searchBtn {
+  border: none;
+  background-color: inherit;
+  color: white;
+  width: 7vw;
+  height: 7vh;
+  cursor: pointer;
+}
+
+.present-forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 2vh;
+  margin-left: 25vw;
+  width: 70vw;
+  height: 50vh;
+  border: solid grey 5px;
+}
+
+li {
+  list-style: none;
+  font-weight: bolder;
+}
+
+.forecast {
+  display: flex;
+  justify-content: space-around;
+  margin: 3.5%;
+  color: white;
+  gap: 20px;
+}
+
+.next-forecast {
+  height: 50vh;
+  width: 80vw;
+  color: white;
+  background-color: rgb(0, 30, 138);
+}

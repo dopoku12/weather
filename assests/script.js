@@ -12,7 +12,8 @@ const mainHumidity = document.getElementById(`mainHumidity`)
 const mainUvIndex = document.getElementById(`mainUvIndex`)
 
 //INITIALIZE SEARCH AND SAVE// 
-const initialize = () => {
+const initialize = (e) => {
+
     let searchVal = search.value.trim()
     weatherApi(searchVal)
     save(searchVal)
