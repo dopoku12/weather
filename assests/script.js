@@ -12,7 +12,7 @@ const mainHumidity = document.getElementById(`mainHumidity`)
 const mainUvIndex = document.getElementById(`mainUvIndex`)
 
 //INITIALIZE SEARCH AND SAVE// 
-const initialize = (e) => {
+const initialize = () => {
 
     let searchVal = search.value.trim()
     weatherApi(searchVal)
@@ -23,26 +23,27 @@ const initialize = (e) => {
 let inputArr = []
 //SAVE SEARCH VALUE//
 const save = (input) => {
-    inputArr.push(input)
-    console.log(inputArr);
-    console.log('history :', input);
-    localStorage.setItem('Search History', JSON.stringify(inputArr))
-    let parsedVal = JSON.parse(localStorage.getItem('Search History'));
-    console.log('passed', parsedVal)
-    let outputArr = []
-    outputArr.push(parsedVal)
 
+    let outputArr = [input]
+    outputArr.map(history => {
+        localStorage.setItem('Search History', JSON.stringify(history));
+        let parsedVal = JSON.parse(localStorage.getItem('Search History'));
+        console.log('passed', parsedVal)
 
-    outputArr.forEach(function (history) {
         const liTag = document.createElement("li")
         liTag.innerText = history
         savedSearch.appendChild(liTag)
-
     })
 
-    // inputArr.forEach((history) => {
+    // outputArr.forEach((history) => {
+    //     console.log("history", history);
+
     // })
-};
+
+}
+
+
+
 
 searchBtn.addEventListener('click', initialize)
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); })
@@ -50,6 +51,7 @@ search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); })
 
 async function weatherApi(inputName) {
     let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+    console.log("res:", response);
     let data = await response.json()
     console.log('firstApi:', data);
     //if (404/NOT FOUND) DOES NOT OCCUR PROCEED//
