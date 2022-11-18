@@ -49,7 +49,7 @@ searchBtn.addEventListener('click', initialize)
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); })
 // window.onload = load()
 
-async function weatherApi(inputName) {
+async function weatherApi(inputName = 'new york') {
     let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     console.log("res:", response);
     let data = await response.json()
@@ -102,6 +102,7 @@ async function weatherApi(inputName) {
     else { nameNDtime.innerText = `SORRY CITY NOT FOUND 😭` };
 
 };
+weatherApi()
 
 clearBtn.addEventListener('click', function (e) {
     e.preventDefault()
