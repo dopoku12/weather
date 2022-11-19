@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assests/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@500&family=Fira+Code:wght@300&family=Nunito&family=Play&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,7 +20,9 @@
 <body>
     <header>
         <div class="location">
-            <i class="fa-solid fa-location-dot"></i>
+            <div>
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
             <h2 id="name"></h2>
         </div>
         <div class="temp">
@@ -32,13 +39,11 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                     <input type="button" value="clear" id="clearBtn">
-
                     <ul class="mainUl">
                         <div>
                             <i class="fa-solid fa-wind"></i>
                             <li id="mainWind"></li>
                         </div>
-
                         <div>
                             <i class="fa-solid fa-droplet"></i>
                             <li id="mainHumidity"></li>
@@ -49,84 +54,53 @@
                         </div>
                     </ul>
                 </nav>
-                <div class="savedSearch">
-                </div>
             </section>
             <h2 id="description"></h2>
+            <div class="savedSearch"></div>
         </article>
-
 
         <article class="forecast">
             <section id="day0" class="next-forecast">
                 <ul>
-                    <li id="temp0"></li>
-
                     <li id="icon0"></li>
-
+                    <li id="temp0"></li>
                     <li id="wind0"></li>
-                    <i class="fa-solid fa-wind"></i>
-
                     <li id="humidity0"></li>
-                    <i class="fa-solid fa-droplet"></i>
-
                 </ul>
             </section>
             <section id="day1" class="next-forecast">
                 <ul>
-                    <li id="temp1"></li>
                     <li id="icon1"> </li>
-
+                    <li id="temp1"></li>
                     <li id="wind1"></li>
-                    <i class="fa-solid fa-wind"></i>
-
                     <li id="humidity1"> </li>
-                    <i class="fa-solid fa-droplet"></i>
-
                 </ul>
             </section>
 
             <section id="day2" class="next-forecast">
                 <ul>
-
-                    <li id="temp2"></li>
-
                     <li id="icon2"> </li>
-
+                    <li id="temp2"></li>
                     <li id="wind2"></li>
-                    <i class="fa-solid fa-wind"></i>
-
                     <li id="humidity2"></li>
-                    <i class="fa-solid fa-droplet"></i>
                 </ul>
-
             </section>
 
             <section id="day3" class="next-forecast">
                 <ul>
-                    <li id="temp3"></li>
-
                     <li id="icon3"></li>
-
+                    <li id="temp3"></li>
                     <li id="wind3"></li>
-                    <i class="fa-solid fa-wind"></i>
-
                     <li id="humidity3"></li>
-                    <i class="fa-solid fa-droplet"></i>
-
                 </ul>
             </section>
 
             <section id="day4" class="next-forecast">
                 <ul>
-                    <li id="temp4"></li>
-
                     <li id="icon4"></li>
-
+                    <li id="temp4"></li>
                     <li id="wind4"></li>
-                    <i class="fa-solid fa-wind"></i>
-
                     <li id="humidity4"></li>
-                    <i class="fa-solid fa-droplet"></i>
                 </ul>
             </section>
         </article>
