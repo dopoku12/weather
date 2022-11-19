@@ -13,87 +13,74 @@
 </head>
 
 <body>
-
-    <head>
-        <h1>
-            Weather Dashboard
-        </h1>
-        <nav class="search-container">
-            <input type="search" placeholder="Enter city" id="search">
-            <button type="button" id="searchBtn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </nav>
-    </head>
-
+    <header>
+        <div class="location">
+            <i class="fa-solid fa-location-dot"></i>
+            <h2 id="name"></h2>
+        </div>
+        <div class="temp">
+            <h1 id="mainTemp"></h1>
+            <div id="icons"></div>
+        </div>
+    </header>
     <main>
-
-
-
         <article>
-            <input type="button" value="clear" id="clearBtn">
-            <section class="savedSearch">
-
-            </section>
-
             <section class="present-forecast">
-                <ul>
+                <nav class="search-container">
+                    <input type="search" placeholder="Enter city" id="search">
+                    <button type="button" id="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input type="button" value="clear" id="clearBtn">
 
-                    <li id="nameNDtime">
+                    <ul class="mainUl">
+                        <div>
+                            <i class="fa-solid fa-wind"></i>
+                            <li id="mainWind"></li>
+                        </div>
 
-                    </li>
+                        <div>
+                            <i class="fa-solid fa-droplet"></i>
+                            <li id="mainHumidity"></li>
+                        </div>
 
-                    <li id="mainTemp">
-
-                    </li>
-                    <li id="mainWind">
-
-                    </li>
-
-                    <li id="mainHumidity">
-
-                    </li>
-
-                    <li id="mainUvIndex">
-
-                    </li>
-                </ul>
+                        <div>
+                            <li id="mainUvIndex"></li>
+                        </div>
+                    </ul>
+                </nav>
+                <div class="savedSearch">
+                </div>
             </section>
+            <h2 id="description"></h2>
         </article>
 
 
         <article class="forecast">
-            <h2>5-Day forecast:</h2>
             <section id="day0" class="next-forecast">
                 <ul>
+                    <li id="temp0"></li>
 
-                    <li id="temp0">
+                    <li id="icon0"></li>
 
-                    </li>
-                    <li id="wind0">
+                    <li id="wind0"></li>
+                    <i class="fa-solid fa-wind"></i>
 
-                    </li>
-
-                    <li id="humidity0">
-
-                    </li>
-
-
+                    <li id="humidity0"></li>
+                    <i class="fa-solid fa-droplet"></i>
 
                 </ul>
             </section>
             <section id="day1" class="next-forecast">
                 <ul>
-                    <li id="temp1">
+                    <li id="temp1"></li>
+                    <li id="icon1"> </li>
 
-                    </li>
-                    <li id="wind1">
+                    <li id="wind1"></li>
+                    <i class="fa-solid fa-wind"></i>
 
-                    </li>
-
-                    <li id="humidity1">
-
-                    </li>
+                    <li id="humidity1"> </li>
+                    <i class="fa-solid fa-droplet"></i>
 
                 </ul>
             </section>
@@ -101,53 +88,56 @@
             <section id="day2" class="next-forecast">
                 <ul>
 
-                    <li id="temp2">
+                    <li id="temp2"></li>
 
-                    </li>
-                    <li id="wind2">
+                    <li id="icon2"> </li>
 
-                    </li>
+                    <li id="wind2"></li>
+                    <i class="fa-solid fa-wind"></i>
 
-                    <li id="humidity2">
-
-                    </li>
+                    <li id="humidity2"></li>
+                    <i class="fa-solid fa-droplet"></i>
                 </ul>
 
             </section>
 
             <section id="day3" class="next-forecast">
                 <ul>
-                    <li id="temp3">
+                    <li id="temp3"></li>
 
-                    </li>
-                    <li id="wind3">
+                    <li id="icon3"></li>
 
-                    </li>
+                    <li id="wind3"></li>
+                    <i class="fa-solid fa-wind"></i>
 
-                    <li id="humidity3">
+                    <li id="humidity3"></li>
+                    <i class="fa-solid fa-droplet"></i>
 
-                    </li>
                 </ul>
             </section>
 
             <section id="day4" class="next-forecast">
                 <ul>
-                    <li id="temp4">
+                    <li id="temp4"></li>
 
-                    </li>
-                    <li id="wind4">
+                    <li id="icon4"></li>
 
-                    </li>
+                    <li id="wind4"></li>
+                    <i class="fa-solid fa-wind"></i>
 
-                    <li id="humidity4">
-
-                    </li>
+                    <li id="humidity4"></li>
+                    <i class="fa-solid fa-droplet"></i>
                 </ul>
             </section>
         </article>
-
     </main>
 
+    <footer>
+        <div class="dNt">
+            <h2 id="time"></h2>
+            <h2 id="date"></h2>
+        </div>
+    </footer>
 
     <script src="assests/script.js"></script>
 </body>
