@@ -16,6 +16,19 @@ const mainHumidity = document.getElementById(`mainHumidity`)
 const mainUvIndex = document.getElementById(`mainUvIndex`)
 
 //INITIALIZE SEARCH AND SAVE// 
+
+
+
+
+if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        console.log("Longitude:", position.coords.longitude, "Latitude:", position.coords.latitude);
+    });
+}
+
+
+
+
 const initialize = () => {
     let searchVal = search.value.trim()
     weatherApi(searchVal)
@@ -49,16 +62,16 @@ searchBtn.addEventListener('click', initialize)
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); })
 // window.onload = load()
 
-async function weatherApi(inputName = 'new york') {
+async function weatherApi(inputName = 'new york', usrLat, usrL) {
     let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     console.log("res:", response);
     let data = await response.json()
     console.log('firstApi:', data);
     //if (404/NOT FOUND) DOES NOT OCCUR PROCEED//
     if (data.cod !== '404') {
-        const outputName = data.name
-        const latitude = data.coord.lat
-        const longitude = data.coord.lon
+        const outputName = data.name;
+        const latitude = data.coord.lat;
+        const longitude = data.coord.lon;
 
         // third API//
         let responseTwo = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude={part}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
