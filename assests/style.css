@@ -5,7 +5,6 @@
 body {
   overflow-x: hidden;
   background-image: linear-gradient(#616161, black);
-
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -18,40 +17,44 @@ li {
   list-style: none;
   font-weight: bolder;
 }
-button {
-}
+
 img {
   width: 100%;
 }
 
-.location {
+header {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10%;
+  margin: 5%;
 }
 
 #name {
   font-size: 2.5rem;
   font-weight: bolder;
+  white-space: nowrap;
 }
+
 .fa-location-dot {
   font-size: 2.5rem;
+  white-space: nowrap;
 }
+
 #icons {
-  border-left: rgb(13, 13, 13) solid 2px;
-  width: 100%;
+  border-left: rgb(102, 101, 101) solid 1px;
+  width: 50%;
 }
 
 .temp {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  align-items: center;
   font-size: 1.5rem;
   text-shadow: 0px 0px 20px black, 0px 0px 5px white;
 }
 
 #description {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: lighter;
 }
 
@@ -63,9 +66,10 @@ img {
 }
 
 .search-container {
-  width: 70vw;
-  padding: 2px;
-  border-radius: 5px;
+  padding-top: 10px;
+  width: 100%;
+  height: 38%;
+  border-radius: inherit;
   text-align: center;
   border-radius: 15px;
   box-shadow: 5px 15px 20px 15px rgba(0, 0, 0, 0.634), 0px 0px 40px white;
@@ -129,9 +133,10 @@ img {
   flex-direction: row;
 }
 .mainLi {
-  padding: 10px;
-  border-left: rgb(102, 101, 101) solid 2px;
-  border-right: rgb(102, 101, 101) solid 2px;
+  padding-left: 8%;
+  padding-right: 8%;
+  border-left: rgb(102, 101, 101) solid 1px;
+  border-right: rgb(102, 101, 101) solid 1px;
 }
 
 .forecast {
@@ -142,9 +147,6 @@ img {
   margin: 3.5%;
   color: white;
   gap: 20px;
-}
-
-#description {
 }
 
 .next-forecast {
