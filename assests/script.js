@@ -40,76 +40,87 @@ const save = (input) => {
 }
 searchBtn.addEventListener('click', initialize);
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); });
-function display(searchValue) {
+
+
+async function createHtml(latitude, longitude, searchName = null) {
+    // third API//
+    let resThree = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude={part}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+    console.log('long2:', longitude, 'lat2:', latitude)
+    let dataThree = await resThree.json()
+    console.log('weatherApi :', dataThree);
+    console.log(dataThree.timezone)
+    let resFour = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+    let dataFour = await resFour.json()
+    console.log(dataFour)
+    const outputName = dataFour[0].name;
+    //displaying forecast on .present-forecast//
+    const current = dataThree.current;
+    icons.innerHTML = `<img src= http://openweathermap.org/img/w/${current.weather[0].icon}.png></img>`;
+    description.innerText = `${current.weather[0].description}`;
+    mainTemp.innerText = `${current.temp}°F`;
+    mainWind.innerText = `${current.wind_speed}MPH 
+        Wind speed `;
+    mainHumidity.innerText = `${current.humidity}%
+     Humidity`;
+    //uvIndex text content and backgroundColor//
+    mainUvIndex.innerText = `UV index: ${current.uvi}`;
+    current.uvi >= 6 ? mainUvIndex.style.backgroundColor = 'red' : mainUvIndex.style.backgroundColor = 'green'
+
+    //displaying time/date,cityName on .present-forecast//
+    const dateObj = new Date()
+    const date = dateObj.toLocaleString('en-US', { timeZone: `${dataThree.timezone}` });
+    // const month = dateObj.toLocaleString('en-us', { month: 'long' });
+    // const today = dateObj.toLocaleString("default", { weekday: "long" });
+    const dateArr = date.split(',');
+
+    console.log(dateArr);
+    const hourNMin = dateArr[1].split(':');
+    const meridian = dateArr[1].split(':')[2].split(" ");
+    name.innerText = !searchName ? outputName : searchName;
+    time.innerText = `${hourNMin[0]}:${hourNMin[1]} ${meridian[1]}`;
+    globalDate.innerHTML = `${dateArr[0]}`
+    //displaying forecast on .forecast
+    let dailyArr = dataThree.daily
+
+    dailyArr.forEach(function (day) {
+        //DAILY FORECAST//
+        if (num <= 4) {
+            let temp = document.getElementById(`temp${num}`);
+            let wind = document.getElementById(`wind${num}`);
+            let humidity = document.getElementById(`humidity${num}`);
+            let sideIcon = document.getElementById(`icon${num}`);
+            temp.innerText = `${day.temp.day}°F`;
+            sideIcon.innerHTML = `<img src= http://openweathermap.org/img/w/${day.weather[0].icon}.png></img>`;
+        };
+        num++
+    });
+}
+
+function display(searchValue = null) {
     let inputName = searchValue
     if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            async function weatherApi(inputName = null) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            createHtml(latitude, longitude)
+            async function weatherApi(inputName) {
                 if (inputName) {
-                    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
-                    console.log("res:", response);
-                    let data = await response.json()
-                    console.log('firstApi:', data);
+                    let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+                    console.log("res:", res);
+                    let data = await res.json()
+                    console.log('secondApi:', data);
                     //if (404/NOT FOUND) DOES NOT OCCUR PROCEED//
-                    if ('404') {
-
-                        const outputName = data.name;
-                        const latitude = data.coord.lat;
-                        const longitude = data.coord.lon;
+                    if (res.ok) {
+                        const searchName = data.name
+                        console.log('name:', searchName)
+                        let latitude = data.coord.lat;
+                        let longitude = data.coord.lon;
+                        createHtml(latitude, longitude, searchName)
+                        console.log('long:', longitude, 'lat:', latitude)
                     }
                 }
-                // third API//
-                let responseTwo = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude={part}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
-                let dataTwo = await responseTwo.json()
-                console.log('weatherApi :', dataTwo);
-                console.log(dataTwo.timezone)
-                //displaying forecast on .present-forecast//
-                const current = dataTwo.current;
-                icons.innerHTML = `<img src= http://openweathermap.org/img/w/${current.weather[0].icon}.png></img>`;
-                description.innerText = `${current.weather[0].description}`;
-                mainTemp.innerText = `${current.temp}°F`;
-                mainWind.innerText =
-                    `${current.wind_speed}MPH 
-        Wind speed `;
-                mainHumidity.innerText =
-                    `${current.humidity}%
-            Humidity`;
-                //uvIndex text content and backgroundColor//
-                mainUvIndex.innerText = `UV index: ${current.uvi}`;
-                current.uvi >= 6 ? mainUvIndex.style.backgroundColor = 'red' : mainUvIndex.style.backgroundColor = 'green'
-
-                //displaying time/date,cityName on .present-forecast//
-                const dateObj = new Date()
-                const date = dateObj.toLocaleString('en-US', { timeZone: `${dataTwo.timezone}` });
-                // const month = dateObj.toLocaleString('en-us', { month: 'long' });
-                // const today = dateObj.toLocaleString("default", { weekday: "long" });
-                const dateArr = date.split(',');
-
-                console.log(dateArr);
-                const hourNMin = dateArr[1].split(':');
-                const meridian = dateArr[1].split(':')[2].split(" ");
-                name.innerText = 'Your Location';
-                time.innerText = `${hourNMin[0]}:${hourNMin[1]} ${meridian[1]}`;
-                globalDate.innerHTML = `${dateArr[0]}`
-                //displaying forecast on .forecast
-                let dailyArr = dataTwo.daily
-
-                dailyArr.forEach(function (day) {
-                    //DAILY FORECAST//
-                    if (num <= 4) {
-                        let temp = document.getElementById(`temp${num}`);
-                        let wind = document.getElementById(`wind${num}`);
-                        let humidity = document.getElementById(`humidity${num}`);
-                        let sideIcon = document.getElementById(`icon${num}`);
-                        temp.innerText = `${day.temp.day}°F`;
-                        sideIcon.innerHTML = `<img src= http://openweathermap.org/img/w/${day.weather[0].icon}.png></img>`;
-                    };
-                    num++
-                });
             };
-            return weatherApi();
+            return weatherApi(inputName);
         });
     }
 }
