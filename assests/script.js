@@ -1,10 +1,10 @@
 "use strict"
-//HTML CONTENT//
+//NAVIGATION ID'S//
 const savedSearch = document.querySelector('.savedSearch');
 const search = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn');
 const clearBtn = document.getElementById('clearBtn');
-//MAIN FORECAST CONTENT//
+//MAIN FORECAST ID'S//
 const icons = document.getElementById("icons");
 const name = document.getElementById("name");
 const globalDate = document.getElementById("date");
@@ -18,7 +18,7 @@ let num = 0
 //INITIALIZE SEARCH AND SAVE// 
 const initialize = () => {
     let searchValue = search.value.trim()
-    display(searchValue)
+    usrInput(searchValue)
     save(searchValue)
     // window.onload = load()
 }
@@ -41,14 +41,41 @@ const save = (input) => {
 searchBtn.addEventListener('click', initialize);
 search.addEventListener('keydown', e => { if (e.keyCode === 13) initialize(); });
 
+// CONVERTS USER INPUT INTO LAT LONG AND NAME//
+async function usrInput(inputName) {
+    let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+    console.log("res:", res);
+    let data = await res.json()
+    console.log('secondApi:', data);
+    //if (404/NOT FOUND) DOES NOT OCCUR PROCEED//
+    if (res.ok) {
+        const searchName = data.name
+        console.log('name:', searchName)
+        let latitude = data.coord.lat;
+        let longitude = data.coord.lon;
+        display(latitude, longitude, searchName)
+        console.log('long:', longitude, 'lat:', latitude)
+    }
+}
 
-async function createHtml(latitude, longitude, searchName = null) {
-    // third API//
+//DEFAULT USER LOCATION//
+if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        display(latitude, longitude)
+    });
+}
+
+// DISPLAY WEATHER DATA IN HTML// 
+async function display(latitude, longitude, searchName = null) {
+    // THIRD API WEATHER DATA //
     let resThree = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude={part}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     console.log('long2:', longitude, 'lat2:', latitude)
     let dataThree = await resThree.json()
     console.log('weatherApi :', dataThree);
     console.log(dataThree.timezone)
+    //FOURTH API USED REVERSE GEOCODING//
     let resFour = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     let dataFour = await resFour.json()
     console.log(dataFour)
@@ -96,35 +123,6 @@ async function createHtml(latitude, longitude, searchName = null) {
     });
 }
 
-function display(searchValue = null) {
-    let inputName = searchValue
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            let latitude = position.coords.latitude;
-            let longitude = position.coords.longitude;
-            createHtml(latitude, longitude)
-            async function weatherApi(inputName) {
-                if (inputName) {
-                    let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputName}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
-                    console.log("res:", res);
-                    let data = await res.json()
-                    console.log('secondApi:', data);
-                    //if (404/NOT FOUND) DOES NOT OCCUR PROCEED//
-                    if (res.ok) {
-                        const searchName = data.name
-                        console.log('name:', searchName)
-                        let latitude = data.coord.lat;
-                        let longitude = data.coord.lon;
-                        createHtml(latitude, longitude, searchName)
-                        console.log('long:', longitude, 'lat:', latitude)
-                    }
-                }
-            };
-            return weatherApi(inputName);
-        });
-    }
-}
-display()
 //clear
 clearBtn.addEventListener('click', function (e) {
     e.preventDefault()
