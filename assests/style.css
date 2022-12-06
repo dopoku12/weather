@@ -3,6 +3,7 @@
   margin: 0px;
 }
 body {
+  height: 100vh;
   overflow-x: hidden;
   background-image: linear-gradient(#616161, black);
   background-size: cover;
@@ -144,18 +145,20 @@ header {
 
 .forecast {
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  height: 70%;
-  width: 100vw;
+  height: 30%;
+  width: 95vw;
   color: white;
   gap: 20px;
 }
 
 .next-forecast {
-  height: 70%;
-  width: 70%;
+  align-items: center;
+  height: 60%;
+  width: 65%;
   border-radius: 10%;
   color: white;
   background-color: #35333379;
-  box-shadow: 5px 15px 20px 15px rgba(0, 0, 0, 0.634);
+  box-shadow: 5px 15px 20px 15px rgba(0, 0, 0, 0.634), 0px 0px 40px white;
 }
