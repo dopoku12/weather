@@ -82,7 +82,6 @@ async function display(latitude, longitude, searchName = null) {
     globalDate.innerHTML = `${dateArr[0]}`;
     //displaying forecast on .forecast//
     let dailyArr = dataThree.daily;
-    console.log('dayWeather:', dailyArr, num);
     dailyArr.forEach((day) => {
         //DAILY FORECAST//
         if (num <= 4) {
@@ -90,7 +89,6 @@ async function display(latitude, longitude, searchName = null) {
             let wind = document.getElementById(`wind${num}`);
             let humidity = document.getElementById(`humidity${num}`);
             let sideIcon = document.getElementById(`icon${num}`);
-            console.log('dayWeather:', day.temp.day, num);
             temp.innerText = `${day.temp.day}°F`;
             sideIcon.innerHTML = `<img src= http://openweathermap.org/img/w/${day.weather[0].icon}.png></img>`;
         };
