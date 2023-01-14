@@ -19,7 +19,7 @@ li {
 }
 
 img {
-  width: 100%;
+  width: 5vw;
 }
 
 header {
@@ -160,4 +160,10 @@ header {
   color: white;
   background-color: #35333379;
   box-shadow: 5px 15px 20px 15px rgba(0, 0, 0, 0.634), 0px 0px 40px white;
+}
+@media only screen and (max-width: 725px) {
+  /*Small smartphones [325px -> 425px]*/
+  img {
+    width: 100%;
+  }
 }
