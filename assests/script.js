@@ -53,12 +53,12 @@ async function display(latitude, longitude, searchName = null) {
     let resThree = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude={part}&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     let dataThree = await resThree.json();
     //FOURTH API USED REVERSE GEOCODING//
-    let resFour = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
+    let resFour = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=68ef11f1d0efb99f09ab6da7a559dd58`)
     let dataFour = await resFour.json();
     const outputName = dataFour[0].name;
     //displaying forecast on .present-forecast//
     const current = dataThree.current;
-    icons.innerHTML = `<img src= http://openweathermap.org/img/w/${current.weather[0].icon}.png></img>`;
+    icons.innerHTML = `<img src= https://openweathermap.org/img/w/${current.weather[0].icon}.png></img>`;
     description.innerText = `${current.weather[0].description}`;
     mainTemp.innerText = `${current.temp}°F`;
     mainWind.innerText = `${current.wind_speed}MPH 
@@ -90,7 +90,7 @@ async function display(latitude, longitude, searchName = null) {
             let humidity = document.getElementById(`humidity${num}`);
             let sideIcon = document.getElementById(`icon${num}`);
             temp.innerText = `${day.temp.day}°F`;
-            sideIcon.innerHTML = `<img src= http://openweathermap.org/img/w/${day.weather[0].icon}.png></img>`;
+            sideIcon.innerHTML = `<img src= https://openweathermap.org/img/w/${day.weather[0].icon}.png></img>`;
         };
         num++;
     });
